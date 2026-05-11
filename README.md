@@ -62,3 +62,51 @@ go mod download
 
 bash
 go run cmd/main.go
+
+
+
+Примеры запросов
+Регистрация пользователя
+bash
+curl -X POST http://localhost:8080/api/v1/public/register \
+  -H "Content-Type: application/json" \
+  -d '{
+    "username": "john_doe",
+    "email": "john@example.com",
+    "password": "SecurePass123!"
+  }'
+Аутентификация
+bash
+curl -X POST http://localhost:8080/api/v1/public/login \
+  -H "Content-Type: application/json" \
+  -d '{
+    "email": "john@example.com",
+    "password": "SecurePass123!"
+  }'
+Создание счёта (с JWT)
+bash
+curl -X POST http://localhost:8080/api/v1/accounts \
+  -H "Authorization: Bearer <YOUR_JWT_TOKEN>" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "currency": "RUB"
+  }'
+Выпуск карты
+bash
+curl -X POST http://localhost:8080/api/v1/cards \
+  -H "Authorization: Bearer <YOUR_JWT_TOKEN>" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "account_id": 1,
+    "card_type": "debit"
+  }'
+Оформление кредита
+bash
+curl -X POST http://localhost:8080/api/v1/credits \
+  -H "Authorization: Bearer <YOUR_JWT_TOKEN>" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "amount": 100000,
+    "term_months": 12,
+    "interest_rate": 15.5
+  }'
