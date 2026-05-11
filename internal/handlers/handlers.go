@@ -1,14 +1,13 @@
 package handlers
 
 import (
+	"database/sql"
 	"encoding/json"
 	"net/http"
 	"strconv"
 	"time"
 
 	"github.com/Dimawalker/bank/internal/config"
-	"github.com/Dimawalker/bank/internal/database"
-	"github.com/Dimawalker/bank/internal/middleware"
 	"github.com/Dimawalker/bank/internal/models"
 	"github.com/Dimawalker/bank/internal/repository"
 	"github.com/Dimawalker/bank/internal/service"
@@ -24,14 +23,14 @@ type Handlers struct {
 	logger         *logrus.Logger
 }
 
-func New(cfg *config.Config, logger *logrus.Logger) *Handlers {
-	creditRepo := repository.NewCreditRepository()
-	cardRepo := repository.NewCardRepository(database.DB, logger)
-	accountRepo := repository.NewAccountRepository()
+func New(cfg *config.Config, db *sql.DB, logger *logrus.Logger) *Handlers {
+	creditRepo := repository.NewCreditRepository(db)
+	cardRepo := repository.NewCardRepository(db, logger)
+	accountRepo := repository.NewAccountRepository(db)
 
 	return &Handlers{
 		userService:    service.NewUserService(logger),
-		accountService: service.NewAccountService(logger),
+		accountService: service.NewAccountService(db, logger),
 		creditService:  service.NewCreditService(creditRepo, logger),
 		cardService:    service.NewCardService(cardRepo, accountRepo, logger),
 		logger:         logger,
@@ -77,15 +76,25 @@ func (h *Handlers) LoginHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 // CreateAccountHandler handles account creation
+// CreateAccountHandler handles account creation
 func (h *Handlers) CreateAccountHandler(w http.ResponseWriter, r *http.Request) {
-	req, ok := middleware.GetRequestBodyFromContext(r.Context()).(*models.CreateAccountRequest)
-	if !ok {
-		h.logger.Error("Failed to get request body from context")
-		http.Error(w, "Internal server error", http.StatusInternalServerError)
+	var req models.CreateAccountRequest
+	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
+		h.logger.WithError(err).Error("Failed to decode request body")
+		http.Error(w, "Invalid request body", http.StatusBadRequest)
 		return
 	}
 
-	account, err := h.accountService.CreateAccount(req)
+	// Get user ID from context (from auth middleware)
+	userID, ok := r.Context().Value("user_id").(int64)
+	if !ok {
+		h.logger.Error("User ID not found in context")
+		http.Error(w, "Unauthorized", http.StatusUnauthorized)
+		return
+	}
+	req.UserID = userID
+
+	account, err := h.accountService.CreateAccount(&req)
 	if err != nil {
 		h.logger.WithError(err).Error("Failed to create account")
 		http.Error(w, err.Error(), http.StatusInternalServerError)

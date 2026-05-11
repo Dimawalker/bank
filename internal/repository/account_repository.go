@@ -14,14 +14,11 @@ type AccountRepository struct {
 	logger *logrus.Logger
 }
 
-func NewAccountRepository() *AccountRepository {
+func NewAccountRepository(db *sql.DB) *AccountRepository {
 	return &AccountRepository{
+		db:     db,
 		logger: logrus.New(),
 	}
-}
-
-func (r *AccountRepository) SetDB(db *sql.DB) {
-	r.db = db
 }
 
 func (r *AccountRepository) BeginTransaction() (*sql.Tx, error) {
@@ -125,7 +122,6 @@ func (r *AccountRepository) CreateTransaction(transaction *models.Transaction) e
 	).Scan(&transaction.ID)
 }
 
-// GetTransactions retrieves transactions for an account within a date range
 func (r *AccountRepository) GetTransactions(accountID int64, startDate, endDate time.Time) ([]*models.Transaction, error) {
 	query := `
 		SELECT id, from_account_id, to_account_id, amount, type, created_at

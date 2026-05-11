@@ -49,7 +49,7 @@ func main() {
 	defer database.CloseDB()
 
 	// Initialize handlers
-	h := handlers.New(cfg, logger)
+	h := handlers.New(cfg, database.DB, logger)
 
 	// Initialize router
 	r := router.NewRouter(cfg, h, logger)

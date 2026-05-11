@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/Dimawalker/bank/internal/database"
 	"github.com/Dimawalker/bank/internal/models"
 )
 
@@ -14,9 +13,9 @@ type CreditRepository struct {
 	db *sql.DB
 }
 
-func NewCreditRepository() *CreditRepository {
+func NewCreditRepository(db *sql.DB) *CreditRepository {
 	return &CreditRepository{
-		db: database.DB,
+		db: db,
 	}
 }
 

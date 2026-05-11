@@ -1,14 +1,14 @@
 {
   "server": {
     "host": "0.0.0.0",
-    "port": 8080,
+    "port": 8081,
     "read_timeout": "15s",
     "write_timeout": "15s",
     "idle_timeout": "60s"
   },
   "database": {
     "host": "localhost",
-    "port": 5438,
+    "port": 5439,
     "user": "postgres",
     "password": "postgres",
     "dbname": "abi_banking",
