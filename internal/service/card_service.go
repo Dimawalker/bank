@@ -4,8 +4,8 @@ import (
 	"errors"
 	"time"
 
-	"github.com/Abigotado/abi_banking/internal/models"
-	"github.com/Abigotado/abi_banking/internal/repository"
+	"github.com/Dimawalker/bank/internal/models"
+	"github.com/Dimawalker/bank/internal/repository"
 	"github.com/sirupsen/logrus"
 )
 

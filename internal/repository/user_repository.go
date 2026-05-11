@@ -4,8 +4,8 @@ import (
 	"database/sql"
 	"errors"
 
-	"github.com/Abigotado/abi_banking/internal/database"
-	"github.com/Abigotado/abi_banking/internal/models"
+	"github.com/Dimawalker/bank/internal/database"
+	"github.com/Dimawalker/bank/internal/models"
 )
 
 type UserRepository struct {

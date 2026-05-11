@@ -4,8 +4,8 @@ import (
 	"crypto/tls"
 	"fmt"
 
-	"github.com/Abigotado/abi_banking/internal/config"
-	"github.com/Abigotado/abi_banking/internal/models"
+	"github.com/Dimawalker/bank/internal/config"
+	"github.com/Dimawalker/bank/internal/models"
 	"gopkg.in/mail.v2"
 )
 

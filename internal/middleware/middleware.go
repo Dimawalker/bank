@@ -8,7 +8,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/Abigotado/abi_banking/internal/models"
+	"github.com/Dimawalker/bank/internal/models"
 	"github.com/golang-jwt/jwt/v5"
 	"github.com/google/uuid"
 	"github.com/sirupsen/logrus"

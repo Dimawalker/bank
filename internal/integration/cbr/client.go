@@ -8,7 +8,7 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/Abigotado/abi_banking/internal/config"
+	"github.com/Dimawalker/bank/internal/config"
 	"github.com/beevik/etree"
 )
 

@@ -6,12 +6,12 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/Abigotado/abi_banking/internal/config"
-	"github.com/Abigotado/abi_banking/internal/database"
-	"github.com/Abigotado/abi_banking/internal/middleware"
-	"github.com/Abigotado/abi_banking/internal/models"
-	"github.com/Abigotado/abi_banking/internal/repository"
-	"github.com/Abigotado/abi_banking/internal/service"
+	"github.com/Dimawalker/bank/internal/config"
+	"github.com/Dimawalker/bank/internal/database"
+	"github.com/Dimawalker/bank/internal/middleware"
+	"github.com/Dimawalker/bank/internal/models"
+	"github.com/Dimawalker/bank/internal/repository"
+	"github.com/Dimawalker/bank/internal/service"
 	"github.com/gorilla/mux"
 	"github.com/sirupsen/logrus"
 )

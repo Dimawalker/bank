@@ -3,9 +3,9 @@ package scheduler
 import (
 	"time"
 
-	"github.com/Abigotado/abi_banking/internal/models"
-	"github.com/Abigotado/abi_banking/internal/repository"
-	"github.com/Abigotado/abi_banking/internal/service"
+	"github.com/Dimawalker/bank/internal/models"
+	"github.com/Dimawalker/bank/internal/repository"
+	"github.com/Dimawalker/bank/internal/service"
 	"github.com/sirupsen/logrus"
 )
 

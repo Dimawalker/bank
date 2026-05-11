@@ -6,8 +6,8 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/Abigotado/abi_banking/internal/database"
-	"github.com/Abigotado/abi_banking/internal/models"
+	"github.com/Dimawalker/bank/internal/database"
+	"github.com/Dimawalker/bank/internal/models"
 )
 
 type CreditRepository struct {

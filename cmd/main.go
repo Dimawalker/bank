@@ -8,10 +8,10 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/Abigotado/abi_banking/internal/config"
-	"github.com/Abigotado/abi_banking/internal/database"
-	"github.com/Abigotado/abi_banking/internal/handlers"
-	"github.com/Abigotado/abi_banking/internal/router"
+	"github.com/Dimawalker/bank/internal/config"
+	"github.com/Dimawalker/bank/internal/database"
+	"github.com/Dimawalker/bank/internal/handlers"
+	"github.com/Dimawalker/bank/internal/router"
 	"github.com/joho/godotenv"
 	"github.com/sirupsen/logrus"
 )

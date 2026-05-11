@@ -4,7 +4,7 @@ import (
 	"database/sql"
 	"fmt"
 
-	"github.com/Abigotado/abi_banking/internal/config"
+	"github.com/Dimawalker/bank/internal/config"
 	_ "github.com/lib/pq"
 	"github.com/sirupsen/logrus"
 )
